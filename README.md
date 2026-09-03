@@ -1,100 +1,104 @@
-🧠 KeyMood AI – Keystroke Emotion Detection (Federated Learning)
+# Deep Emotion Detector
 
-KeyMood AI is a minor project that detects a user’s emotional state using keystroke dynamics (typing behavior).
-Instead of using camera or microphone, the system analyzes typing patterns such as speed, delays, and error rate to predict emotions like Happy, Calm, Neutral, and Stressed.
+A Streamlit app that detects emotions in plain text and TXT, PDF, and DOCX files. It uses the public [`j-hartmann/emotion-english-distilroberta-base`](https://huggingface.co/j-hartmann/emotion-english-distilroberta-base) model through Hugging Face Transformers.
 
-This project also includes the concept of Federated Learning, where models can improve collaboratively without sharing raw user data.
+## Requirements
 
-🚀 Features
-🔐 Login System (Session-based Authentication)
-⌨️ Emotion Detection using Keystroke Behavior
-📊 Dashboard with Prediction History & Visualizations
-🧠 Machine Learning based Emotion Prediction
-🌐 Federated Learning Concept (Global Model Aggregation)
-🎨 Modern Streamlit UI with animations and smooth navigation
-🛡️ Privacy Focus
+- Python 3.10 or newer
+- Internet access on the first run, so Hugging Face can download the model (about 330 MB)
+- Windows, macOS, or Linux
 
-This project is designed with privacy in mind:
+## Install and Run
 
-Typed text content is not stored
-Only behavioral features are used (timing patterns)
-Supports privacy-preserving learning using federated approach
-🧩 Technologies Used
-Python
-Streamlit
-Scikit-learn
-Pandas / NumPy
-Federated Learning (simulation based aggregation)
-Pickle (model saving/loading)
-📂 Project Structure
-FederatedEmotion/
-│── app.py
-│── pages/
-│   │── 1_Login.py
-│   │── 2_Home.py
-│   │── 3_Emotion_Detection.py
-│   │── 4_About.py
-│   │── 5_Dashboard.py
-│── data/
-│   │── raw/
-│   │── processed/
-│── member1_data/
-│── member2_features/
-│── member3_model/
-│── member4_federated/
-│── local_model.pkl
-│── global_model.pkl
-│── prediction_history.csv
-│── predict_emotion.py
-⚙️ How to Run the Project
-1️⃣ Install Dependencies
+Open PowerShell, Command Prompt, or a terminal in the project directory.
 
-Make sure Python is installed, then run:
+### Windows with Conda
 
-pip install -r requirements.txt
+```powershell
+conda create -n emotion-detector python=3.10 -y
+conda activate emotion-detector
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+streamlit run app.py
+```
 
-(If requirements file is not created, install manually: streamlit, pandas, numpy, scikit-learn)
+### Windows with a virtual environment
 
-2️⃣ Run the Streamlit App
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+streamlit run app.py
+```
 
-Go inside project folder and run:
+If PowerShell blocks activation, run this once in PowerShell as an administrator:
 
-streamlit run FederatedEmotion/app.py
-👤 Demo Login Credentials
-User ID	Password
-admin	admin123
-user1	1234
-user2	1234
-user3	1234
-📌 Output Emotions
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
 
-The model predicts emotions based on typing patterns:
+### macOS or Linux
 
-😊 Happy
-😌 Calm
-😐 Neutral
-😰 Stressed
-📊 Dashboard
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+streamlit run app.py
+```
 
-The dashboard provides:
+Open [http://localhost:8501](http://localhost:8501) after Streamlit starts.
 
-prediction history tracking
-emotion count visualization
-trend analysis graphs
-🌐 Federated Learning Concept
+## First Run and Model Download
 
-This project includes federated learning simulation where:
+The model is public and does not require a Hugging Face token. The first text prediction downloads the model automatically and later runs use the local Hugging Face cache.
 
-multiple clients train locally
-only model updates are shared
-global model is generated using aggregation
+To download and test the model before starting the app:
 
-This improves performance without exposing user data.
+```powershell
+python -c "from transformers import pipeline; model = pipeline('sentiment-analysis', model='j-hartmann/emotion-english-distilroberta-base'); print(model('I am very happy today.'))"
+```
 
-📌 Project Objective
+If you see an authentication error, confirm that the code uses `j-hartmann/emotion-english-distilroberta-base`, not the restricted `arpanghoshal/EmoRoBERTa` model.
 
-To create a low-cost and privacy-preserving system that can detect human emotions using only typing behavior, without using camera or biometric sensors.
+## Use the App
 
-📜 License
+1. Choose `Plain text` or `Documents` in the sidebar.
+2. Enter text or upload a TXT, PDF, or DOCX file.
+3. Select `Find emotion`.
+4. For TXT files, the processed text is saved in the `downloads` directory.
 
-This project is created for academic/minor project purposes.
+To allow uploads up to 1 GB:
+
+```powershell
+streamlit run app.py --server.maxUploadSize=1028
+```
+
+## Troubleshooting
+
+Check that the correct environment is active:
+
+```powershell
+where python
+python -c "import sys; print(sys.executable)"
+```
+
+Repair or update the installed packages:
+
+```powershell
+python -m pip install --upgrade --force-reinstall -r requirements.txt
+python -m pip check
+```
+
+If port 8501 is already in use, start on another port:
+
+```powershell
+streamlit run app.py --server.port=8502
+```
+
+## Docker
+
+The repository currently contains an empty `Dockerfile`, so Docker cannot build this app until that file is configured. The local Python instructions above are the supported way to run it.
+
+For hosted deployment, the existing `Procfile` starts the app with `streamlit run app.py` after running `setup.sh`.
