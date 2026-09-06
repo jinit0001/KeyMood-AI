@@ -4,6 +4,7 @@ import streamlit.components.v1 as components
 from PIL import Image
 import os
 from app_funcs import *
+import safety
 
 
 st.set_page_config(
@@ -630,6 +631,8 @@ st.sidebar.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+safety.render_emergency_contacts_sidebar()
+
 
 # ─────────────────────────────────────────────────────────────────────────────
 #  TRUST ROW + TITLE
@@ -713,6 +716,10 @@ if format_type == "Plain text":
             f"{metrics.get('backspaces', 0)} corrections"
         )
 
+        safety.record_emotion(emotion_output)
+        risk_level, risk_reasons = safety.assess_risk(emotion_label=emotion_output)
+        safety.render_risk_badge(risk_level, risk_reasons)
+
 
 # ─────────────────────────────────────────────────────────────────────────────
 #  DOCUMENT MODE
@@ -745,6 +752,9 @@ if format_type == "Documents":
                 </div>
                 """, unsafe_allow_html=True)
                 download_success()
+                safety.record_emotion(emotion_output)
+                risk_level, risk_reasons = safety.assess_risk(text=text, emotion_label=emotion_output)
+                safety.render_risk_badge(risk_level, risk_reasons)
 
         if fname.endswith(".pdf"):
             with st.spinner("Extracting from PDF…"):
@@ -763,6 +773,9 @@ if format_type == "Documents":
                 </div>
                 """, unsafe_allow_html=True)
                 download_success()
+                safety.record_emotion(emotion_output)
+                risk_level, risk_reasons = safety.assess_risk(text=text, emotion_label=emotion_output)
+                safety.render_risk_badge(risk_level, risk_reasons)
 
         if fname.endswith(".docx"):
             with st.spinner("Parsing DOCX…"):
@@ -781,8 +794,13 @@ if format_type == "Documents":
                 </div>
                 """, unsafe_allow_html=True)
                 download_success()
+                safety.record_emotion(emotion_output)
+                risk_level, risk_reasons = safety.assess_risk(text=text, emotion_label=emotion_output)
+                safety.render_risk_badge(risk_level, risk_reasons)
     else:
         st.warning("Upload a document to begin analysis.")
+
+safety.render_alert_log()
 
 
 # ─────────────────────────────────────────────────────────────────────────────
