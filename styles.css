@@ -46,7 +46,8 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-sans);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   height: 100vh;
   height: 100dvh;
   -webkit-font-smoothing: antialiased;
@@ -167,9 +168,10 @@ body {
   flex-direction: column;
   align-items: center;
   padding: clamp(16px, 2.4vh, 28px) clamp(14px, 3vw, 32px);
-  height: 100vh;
-  height: 100dvh;
-  overflow: hidden;
+  min-height: 100vh;
+  min-height: 100dvh;
+  height: auto;
+  overflow: visible;
 }
 
 /* =============================================
@@ -569,8 +571,8 @@ body {
   font-size: clamp(28px, 6.2vw, 80px);
   letter-spacing: -0.04em;
   line-height: 1.12;
-  white-space: nowrap;
-  overflow: hidden;
+  white-space: normal;
+  overflow-wrap: anywhere;
   opacity: 0;
 }
 
@@ -704,8 +706,34 @@ body {
   }
 
   .headline-line {
-    letter-spacing: -0.08em;
+    max-width: 100%;
+    font-size: clamp(30px, 10.5vw, 58px);
+    letter-spacing: -0.045em;
     line-height: 1.05;
+  }
+
+  .hero {
+    gap: clamp(16px, 3.5vh, 24px);
+    padding: 2rem 0 2.5rem;
+  }
+
+  .trust-row {
+    max-width: 100%;
+  }
+
+  .trust-pill {
+    max-width: calc(100vw - 92px);
+    padding-right: 12px;
+  }
+
+  .trust-pill span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .subhead {
+    max-width: 34rem;
+    padding: 0 0.5rem;
   }
 
   .stats {
@@ -722,12 +750,26 @@ body {
   }
 
   .headline-line {
-    letter-spacing: -0.09em;
+    font-size: clamp(28px, 10vw, 42px);
+    letter-spacing: -0.035em;
     line-height: 1.04;
   }
 
   .trust-pill span {
     font-size: 12px;
+  }
+
+  .page {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .stats {
+    gap: 16px 8px;
+  }
+
+  .stat-label {
+    font-size: 10px;
   }
 }
 

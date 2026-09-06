@@ -1,6 +1,6 @@
-# Deep Emotion Detector
+# KeyMood AI
 
-A Streamlit app that detects emotions in plain text and TXT, PDF, and DOCX files. It uses the public [`j-hartmann/emotion-english-distilroberta-base`](https://huggingface.co/j-hartmann/emotion-english-distilroberta-base) model through Hugging Face Transformers.
+KeyMood AI detects emotions in plain text and TXT, PDF, and DOCX files, and can infer mood from typing patterns. It uses the public [`j-hartmann/emotion-english-distilroberta-base`](https://huggingface.co/j-hartmann/emotion-english-distilroberta-base) model through Hugging Face Transformers.
 
 ## Requirements
 
