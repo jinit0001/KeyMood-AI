@@ -84,6 +84,7 @@ st.markdown("""
 html, body {
   background: #000 !important;
   font-family: var(--font-sans) !important;
+  overflow-x: hidden !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -106,6 +107,7 @@ html, body {
 /* ── BLOCK CONTAINER ─────────────────────────────────────────────────── */
 .block-container {
   max-width: 740px !important;
+  width: 100% !important;
   padding: clamp(24px, 4vh, 48px) clamp(14px, 3vw, 32px) 4rem !important;
   position: relative;
   z-index: 1;
@@ -212,8 +214,8 @@ h1 {
   letter-spacing: -0.04em !important;
   line-height: 1.12 !important;
   color: #fff !important;
-  white-space: nowrap;
-  overflow: hidden;
+  white-space: normal;
+  overflow-wrap: anywhere;
   margin-bottom: 0.5rem !important;
 }
 
@@ -554,6 +556,55 @@ a:hover { opacity: 1 !important; }
   border-top: 1px solid rgba(255,255,255,0.09);
 }
 @media (max-width: 620px) {
+  .block-container {
+    max-width: 100% !important;
+    padding: 1.5rem 1rem 3rem !important;
+  }
+
+  section[data-testid="stSidebar"],
+  [data-testid="stSidebar"] {
+    min-width: min(280px, 86vw) !important;
+    width: min(280px, 86vw) !important;
+    max-width: min(280px, 86vw) !important;
+  }
+
+  h1 {
+    font-size: clamp(34px, 11vw, 52px) !important;
+    line-height: 1.06 !important;
+  }
+
+  .trust-row {
+    max-width: 100%;
+  }
+
+  .trust-pill {
+    max-width: calc(100vw - 92px);
+    padding-right: 12px;
+  }
+
+  .trust-pill span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  textarea {
+    min-height: 140px !important;
+    font-size: 16px !important;
+  }
+
+  [data-testid="stFileUploader"] {
+    padding: 1rem !important;
+  }
+
+  .emo-card {
+    padding: 1.1rem 1rem;
+    gap: 0.8rem;
+  }
+
+  .emo-card .icon {
+    font-size: 2rem;
+  }
+
   .stats-row { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
 }
 .stat-box { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 2px; }

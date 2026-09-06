@@ -5,12 +5,18 @@
   <style>
     :root { color-scheme: dark; font-family: Inter, Segoe UI, sans-serif; }
     body { margin: 0; background: transparent; color: #fff; }
-    .wrap { display: grid; gap: 12px; }
+    .wrap { display: grid; gap: 12px; width: 100%; }
     textarea { width: 100%; min-height: 180px; box-sizing: border-box; resize: vertical; padding: 16px; border: 1px solid rgba(255,255,255,.2); border-radius: 14px; background: rgba(20,20,22,.8); color: #fff; font: 15px/1.55 inherit; outline: none; }
     textarea:focus { border-color: #21d4c2; box-shadow: 0 0 0 3px rgba(33,212,194,.14); }
     button { justify-self: start; border: 0; border-radius: 999px; padding: 11px 20px; background: #fff; color: #111; font: 600 14px inherit; cursor: pointer; }
     button:hover { background: #21d4c2; }
     .privacy { color: rgba(255,255,255,.62); font-size: 12px; }
+    @media (max-width: 480px) {
+      .wrap { gap: 10px; }
+      textarea { min-height: 150px; padding: 13px; font-size: 16px; }
+      .privacy { line-height: 1.45; }
+      button { width: 100%; padding: 12px 16px; }
+    }
   </style>
 </head>
 <body>
