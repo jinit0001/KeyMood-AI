@@ -7,7 +7,7 @@ from app_funcs import *
 
 
 st.set_page_config(
-    page_title="Deep Emotion Detector",
+  page_title="KeyMood AI",
     page_icon="static/emotion_mark.svg",
     layout="centered",
     initial_sidebar_state="expanded",
@@ -612,7 +612,7 @@ st.sidebar.markdown("""
 <div style="padding:0.4rem 0 1.2rem; border-bottom:1px solid rgba(255,255,255,0.08); margin-bottom:1.2rem;">
   <div style="font-family:'Inter',sans-serif; font-size:1rem; font-weight:700;
               letter-spacing:-0.02em; color:#fff; margin-bottom:0.2rem;">
-    Emotion Detector
+    KeyMood AI
   </div>
   <div style="font-family:'Inter',sans-serif; font-size:0.73rem; color:#8e8e8e;">
     Powered by Emotion English DistilRoBERTa
@@ -655,7 +655,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-st.title("Deep Emotion Detector")
+st.title("KeyMood AI")
 
 st.markdown("""
 <p class="anim" style="--d:0.18s; color:#d0d0d0; opacity:0.8; font-size:0.97rem;
