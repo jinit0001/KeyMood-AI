@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 180" role="img" aria-labelledby="title desc">
+  <title id="title">Deep Emotion Detector mark</title>
+  <desc id="desc">A gradient face outline surrounded by flowing emotion signal lines.</desc>
+  <defs>
+    <linearGradient id="signal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff4f81"/>
+      <stop offset="0.48" stop-color="#9b5cff"/>
+      <stop offset="1" stop-color="#21d4c2"/>
+    </linearGradient>
+    <linearGradient id="face" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff7b72"/>
+      <stop offset="1" stop-color="#ffc857"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke="url(#signal)" stroke-linecap="round">
+    <path d="M18 119 C92 45 122 151 189 91 S296 70 350 108 438 150 542 48" stroke-width="5" opacity=".9"/>
+    <path d="M18 145 C88 79 132 169 204 116 S302 99 365 128 455 166 542 78" stroke-width="2" opacity=".55"/>
+    <path d="M18 91 C85 20 133 122 191 63 S292 40 346 82 438 120 542 22" stroke-width="2" opacity=".35"/>
+  </g>
+  <circle cx="280" cy="89" r="60" fill="#10192c" stroke="url(#signal)" stroke-width="4"/>
+  <path d="M243 74 C247 53 263 40 281 40 C300 40 316 53 319 74" fill="none" stroke="url(#face)" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="260" cy="91" r="5" fill="#f8fafc"/>
+  <circle cx="300" cy="91" r="5" fill="#f8fafc"/>
+  <path d="M252 116 C268 132 291 132 307 116" fill="none" stroke="url(#face)" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="280" cy="89" r="74" fill="none" stroke="#21d4c2" stroke-width="1" opacity=".3"/>
+</svg>
